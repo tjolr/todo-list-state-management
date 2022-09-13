@@ -10,16 +10,17 @@ export type ActionMap<M extends { [index: string]: any }> = {
 };
 
 export enum Actions {
-  AddTodo = "AddTodo",
-  DeleteTodo = "DeleteTodo",
+  AddTodo = 'AddTodo',
+  DeleteTodo = 'DeleteTodo',
+  ToggleCompleteTodo = 'ToggleCompleteTodo',
 }
 
 type TodoListPayload = {
-  [Actions.AddTodo]: {
-    id: string;
-    title: string;
-  };
+  [Actions.AddTodo]: TodoItemType;
   [Actions.DeleteTodo]: {
+    id: string;
+  };
+  [Actions.ToggleCompleteTodo]: {
     id: string;
   };
 };
@@ -27,6 +28,7 @@ type TodoListPayload = {
 export type TodoItemType = {
   id: string;
   title: string;
+  completed: boolean;
 };
 
 export interface TodoListState {

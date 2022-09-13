@@ -1,26 +1,27 @@
-import { Box, Button, Input } from "@chakra-ui/react";
-import React, { FormEvent, useContext, useState } from "react";
-import uuid from "react-uuid";
-import { TodoListContext } from "../store/context";
-import { Actions } from "../store/types";
+import { Box, Button, Input } from '@chakra-ui/react';
+import React, { FormEvent, useContext, useState } from 'react';
+import uuid from 'react-uuid';
+import { TodoListContext } from '../store/context';
+import { Actions } from '../store/types';
 
 const NewTodoInput = () => {
   const { dispatch } = useContext(TodoListContext);
 
-  const [newTodo, setNewTodo] = useState<string>("");
+  const [newTodo, setNewTodo] = useState<string>('');
 
   const addTodo = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newTodo === "") return;
+    if (newTodo === '') return;
 
     dispatch({
       type: Actions.AddTodo,
       payload: {
         id: uuid(),
         title: newTodo,
+        completed: false,
       },
     });
-    setNewTodo("");
+    setNewTodo('');
   };
   return (
     <form onSubmit={addTodo}>
@@ -32,7 +33,6 @@ const NewTodoInput = () => {
           onChange={(e) => setNewTodo(e.currentTarget.value)}
         />
         <Button colorScheme='blue' type='submit'>
-          {" "}
           Add
         </Button>
       </Box>

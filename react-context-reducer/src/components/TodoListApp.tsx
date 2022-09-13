@@ -1,15 +1,13 @@
-import { Box } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
-import React, { memo } from "react";
-import { TodoListProvider } from "../store/context";
-import TodoList from "./TodoList";
+import { Box } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
+import React from 'react';
+import { TodoListProvider } from '../store/context';
+import CompletedTodos from './CompletedTodos';
+import TodoList from './TodoList';
 
-const TodoListApp = memo(() => {
+const TodoListApp = () => {
   return (
     <Box
-      bg='gray.900'
-      w='100%'
-      h='calc(100vh)'
       p={5}
       color='white'
       display='flex'
@@ -19,10 +17,12 @@ const TodoListApp = memo(() => {
       <Text fontSize='6xl'>Todolist</Text>
 
       <TodoListProvider>
-        <TodoList />{" "}
+        <TodoList />
+
+        <CompletedTodos />
       </TodoListProvider>
     </Box>
   );
-});
+};
 
 export default TodoListApp;
