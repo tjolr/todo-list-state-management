@@ -1,4 +1,4 @@
-import { Actions, TodoActions, TodoItemType, TodoListState } from "./types";
+import { Actions, TodoActions, TodoItemType, TodoListState } from './types';
 
 export const todoListReducer = (state: TodoListState, action: TodoActions) => {
   switch (action.type) {
@@ -14,6 +14,21 @@ export const todoListReducer = (state: TodoListState, action: TodoActions) => {
           ...state.todos.filter(
             (item: TodoItemType) => item.id !== action.payload.id
           ),
+        ],
+      };
+    case Actions.ToggleCompleteTodo:
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((item: TodoItemType) => {
+            if (item.id === action.payload.id) {
+              return {
+                ...item,
+                completed: !item.completed,
+              };
+            }
+            return item;
+          }),
         ],
       };
     default:

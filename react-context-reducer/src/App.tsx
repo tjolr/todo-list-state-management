@@ -1,11 +1,12 @@
-import React from "react";
-import "./App.css";
-import TodoListApp from "./components/TodoListApp";
-import { ChakraProvider } from "@chakra-ui/react";
+import React from 'react';
+import './App.css';
+import TodoListApp from './components/TodoListApp';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from './theme';
 
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <TodoListApp />
     </ChakraProvider>
   );
